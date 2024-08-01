@@ -1,25 +1,67 @@
 import 'package:flutter/material.dart';
+import 'nav_bar.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "space app",
-      home: Scaffold(
-        backgroundColor: Color.fromARGB(255, 167, 161, 161),
-        appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 45, 49, 97),
-          shadowColor: Color.fromARGB(255, 57, 56, 43),
-          title: Text(
-            "BLACK HOLE",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+      title: 'Eco Kids',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+      ),
+      home: HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Eco Kids Home'),
+      ),
+      drawer: NavBar(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Welcome to Eco Kids!',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AnotherScreen()),
+                );
+              },
+              child: Text('Start'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AnotherScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Another Screen'),
+      ),
+      body: Center(
+        child: Text(
+          'This is another screen',
+          style: TextStyle(fontSize: 24),
         ),
       ),
     );
